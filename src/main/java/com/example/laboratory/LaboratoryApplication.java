@@ -1,13 +1,13 @@
-package com.example.mongodb;
+package com.example.laboratory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MongodbApplication {
+public class LaboratoryApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MongodbApplication.class, args);
+        SpringApplication.run(LaboratoryApplication.class, args);
     }
 
 }
