@@ -1,0 +1,8 @@
+version: '3'
+services:
+  db1:
+    container_name: redis
+    image: arm64v8/redis
+    restart: always
+    ports:
+      - '6379:6379'
