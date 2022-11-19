@@ -13,8 +13,19 @@ repositories {
 }
 
 dependencies {
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // redis
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    testImplementation("it.ozimov:embedded-redis:0.7.2")
+
+    // mongodb
 //    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 //    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 }
