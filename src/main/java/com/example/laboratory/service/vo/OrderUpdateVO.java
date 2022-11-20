@@ -4,6 +4,7 @@ import com.example.laboratory.enums.OrderStatus;
 import com.example.laboratory.service.OrderService;
 import com.sun.istack.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.util.Assert;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.util.Assert;
  * @author newbalancer
  * @see OrderService#updateStatus(OrderUpdateVO)
  */
+@Getter
 public class OrderUpdateVO {
 
     /**
@@ -42,7 +44,7 @@ public class OrderUpdateVO {
     private OrderStatus status;
 
     public boolean isBulk() {
-        return productId == null;
+        return orderId == null;
     }
 
 }

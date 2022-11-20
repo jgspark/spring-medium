@@ -25,4 +25,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @Transient
+    public void changedStatus(OrderStatus status) {
+        this.status = status;
+    }
 }
