@@ -15,6 +15,13 @@ public abstract class AbstractOrderStatusUpdate {
         this.orderRepository = orderRepository;
     }
 
-    abstract int update(OrderUpdateVO vo);
+    public abstract int update(OrderUpdateVO vo);
+
+    static public AbstractOrderStatusUpdate of(boolean isBulk, ProductRepository productRepository, OrderRepository orderRepository) {
+        if (isBulk) {
+            return new BulkOrderStatusUpdate(productRepository, orderRepository);
+        }
+        return new SingleOrderStatusUpdate(productRepository, orderRepository);
+    }
 
 }
