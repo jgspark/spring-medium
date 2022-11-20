@@ -21,23 +21,27 @@ public class OrderService {
 
     @Transactional
     public int updateStatus(OrderUpdateVO vo) {
-
         if (vo.isBulk()) {
-
-            Product product = productRepository.findById(vo.getProductId()).orElseThrow();
-
-            product.getOrders().forEach(order -> order.changedStatus(vo.getStatus()));
-
-            return product.getOrders().size();
-
+            return updateBulkStatus(vo);
         } else {
-
-            Order order = orderRepository.findById(vo.getOrderId()).orElseThrow();
-
-            order.changedStatus(vo.getStatus());
-
-            return 1;
+            return updateSingleStatus(vo);
         }
     }
 
+    private int updateBulkStatus(OrderUpdateVO vo) {
+        Product product = productRepository.findById(vo.getProductId()).orElseThrow();
+
+        product.getOrders().forEach(order -> order.changedStatus(vo.getStatus()));
+
+        return product.getOrders().size();
+    }
+
+    private int updateSingleStatus(OrderUpdateVO vo) {
+
+        Order order = orderRepository.findById(vo.getOrderId()).orElseThrow();
+
+        order.changedStatus(vo.getStatus());
+
+        return 1;
+    }
 }
