@@ -23,6 +23,6 @@ public class Product {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private Set<Order> orders = new HashSet<>();
 }
