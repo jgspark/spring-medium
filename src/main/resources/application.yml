@@ -1,12 +1,25 @@
-spring:
-
-#  redis:
-#    lettuce:
-#      pool:
-#        min-idle: 0
-#        max-idle: 8
-#        max-active: 8
+#spring:
 #
+##  redis:
+##    lettuce:
+##      pool:
+##        min-idle: 0
+##        max-idle: 8
+##        max-active: 8
+##
+#
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:4444/default
+    username: default
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 redis:
   port: 6379

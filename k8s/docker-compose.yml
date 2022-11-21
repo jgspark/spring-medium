@@ -6,3 +6,19 @@ services:
     restart: always
     ports:
       - '6379:6379'
+  db2:
+    image: arm64v8/mariadb
+    restart: always
+    ports:
+      - "4444:3306"
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: default
+      MYSQL_USER: default
+      MYSQL_PASSWORD: 1234
+    container_name: "spring_db1"
+    volumes:
+      - ./db1/maria:/var/lib/mysqlysql
+      # init.sql
+      - ./db1/sql:/docker-entrypoint-initdb.d

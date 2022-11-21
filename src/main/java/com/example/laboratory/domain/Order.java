@@ -21,9 +21,12 @@ public class Order {
     private Long id;
 
     private String content;
-
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Transient
     public void changedStatus(OrderStatus status) {
