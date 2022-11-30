@@ -1,6 +1,6 @@
-package com.example.laboratory.repository;
+package com.example.medium.repository;
 
-import com.example.laboratory.domain.Order;
+import com.example.medium.domain.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.example.laboratory.service.dto;
+package com.example.medium.service.dto;
 
-import com.example.laboratory.enums.OrderStatus;
+import com.example.medium.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderStatusRequestDTO {
+public class OrderStatusRequest {
 
     private OrderStatus status;
 

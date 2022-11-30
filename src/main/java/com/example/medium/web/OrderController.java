@@ -1,8 +1,8 @@
-package com.example.laboratory.web;
+package com.example.medium.web;
 
-import com.example.laboratory.service.OrderService;
-import com.example.laboratory.service.dto.OrderStatusRequestDTO;
-import com.example.laboratory.service.vo.OrderUpdateVO;
+import com.example.medium.service.OrderService;
+import com.example.medium.service.dto.OrderStatusRequest;
+import com.example.medium.service.vo.OrderUpdateVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PatchMapping("order/{orderId}")
-    public int updateStatus(@PathVariable Long productId, @PathVariable Long orderId, @RequestBody OrderStatusRequestDTO dto) {
+    public int updateStatus(@PathVariable Long productId, @PathVariable Long orderId, @RequestBody OrderStatusRequest dto) {
         OrderUpdateVO vo = OrderUpdateVO.builder()
                 .productId(productId)
                 .orderId(orderId)

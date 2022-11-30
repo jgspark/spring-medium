@@ -1,4 +1,4 @@
-package com.example.laboratory;
+package com.example.medium;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class LaboratoryApplication {
+public class MediumApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LaboratoryApplication.class, args);
+        SpringApplication.run(MediumApplication.class, args);
     }
 
 }

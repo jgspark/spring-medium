@@ -1,8 +1,8 @@
-package com.example.laboratory.service.order;
+package com.example.medium.service.order;
 
-import com.example.laboratory.repository.OrderRepository;
-import com.example.laboratory.repository.ProductRepository;
-import com.example.laboratory.service.vo.OrderUpdateVO;
+import com.example.medium.repository.OrderRepository;
+import com.example.medium.repository.ProductRepository;
+import com.example.medium.service.vo.OrderUpdateVO;
 
 public abstract class AbstractOrderStatusUpdate {
 

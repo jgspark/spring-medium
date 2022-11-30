@@ -1,9 +1,9 @@
-package com.example.laboratory.service;
+package com.example.medium.service;
 
-import com.example.laboratory.repository.OrderRepository;
-import com.example.laboratory.repository.ProductRepository;
-import com.example.laboratory.service.order.AbstractOrderStatusUpdate;
-import com.example.laboratory.service.vo.OrderUpdateVO;
+import com.example.medium.repository.OrderRepository;
+import com.example.medium.repository.ProductRepository;
+import com.example.medium.service.order.AbstractOrderStatusUpdate;
+import com.example.medium.service.vo.OrderUpdateVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

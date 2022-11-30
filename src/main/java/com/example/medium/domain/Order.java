@@ -1,7 +1,7 @@
-package com.example.laboratory.domain;
+package com.example.medium.domain;
 
 
-import com.example.laboratory.enums.OrderStatus;
+import com.example.medium.enums.OrderStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.example.laboratory.domain;
+package com.example.medium.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

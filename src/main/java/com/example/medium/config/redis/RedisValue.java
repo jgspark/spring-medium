@@ -1,4 +1,4 @@
-package com.example.laboratory.config.redis;
+package com.example.medium.config.redis;
 
 import lombok.Getter;
 import lombok.Setter;

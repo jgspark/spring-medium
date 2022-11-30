@@ -1,7 +1,7 @@
-package com.example.laboratory.service.vo;
+package com.example.medium.service.vo;
 
-import com.example.laboratory.enums.OrderStatus;
-import com.example.laboratory.service.OrderService;
+import com.example.medium.enums.OrderStatus;
+import com.example.medium.service.OrderService;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;

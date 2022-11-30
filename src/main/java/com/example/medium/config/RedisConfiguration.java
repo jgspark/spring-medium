@@ -1,6 +1,6 @@
-package com.example.laboratory.config;
+package com.example.medium.config;
 
-import com.example.laboratory.config.redis.RedisValue;
+import com.example.medium.config.redis.RedisValue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

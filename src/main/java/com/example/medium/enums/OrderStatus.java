@@ -1,4 +1,4 @@
-package com.example.laboratory.enums;
+package com.example.medium.enums;
 
 public enum OrderStatus {
     STOP,
