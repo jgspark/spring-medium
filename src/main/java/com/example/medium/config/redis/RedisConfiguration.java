@@ -1,4 +1,4 @@
-package com.example.medium.config;
+package com.example.medium.config.redis;
 
 import com.example.medium.config.redis.RedisValue;
 import lombok.RequiredArgsConstructor;
