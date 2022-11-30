@@ -1,41 +1,105 @@
-plugins {
-    id 'org.springframework.boot' version '2.7.5'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'java'
+//plugins {
+//    id 'org.springframework.boot' version '2.7.5'
+//    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+//    id 'java'
+//}
+//
+//group = 'com.example'
+//version = '0.0.1-SNAPSHOT'
+//sourceCompatibility = '17'
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//
+//    // lombok
+//    compileOnly 'org.projectlombok:lombok'
+//    annotationProcessor 'org.projectlombok:lombok'
+//
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//
+//    // redis
+//    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+//    testImplementation("it.ozimov:embedded-redis:0.7.2")
+//
+//    // mongodb
+////    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+////    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+//
+//
+//    // connection to rdbms
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    runtimeOnly 'mysql:mysql-connector-java'
+//    testImplementation('com.h2database:h2')
+//}
+//
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}
+//
+
+buildscript {
+    ext {
+        springBootVersion = '2.7.5'
+        dependencyManagementVersion = '1.0.15.RELEASE'
+    }
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:$dependencyManagementVersion"
+    }
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-repositories {
-    mavenCentral()
-}
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
 
-dependencies {
+    repositories {
+        mavenCentral()
+    }
 
-    // lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    dependencies {
 
-    // redis
-    implementation('org.springframework.boot:spring-boot-starter-data-redis')
-    testImplementation("it.ozimov:embedded-redis:0.7.2")
+        // lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
 
-    // mongodb
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // redis
+        implementation('org.springframework.boot:spring-boot-starter-data-redis')
+        testImplementation("it.ozimov:embedded-redis:0.7.2")
+
+        // mongodb
 //    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 //    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 
 
-    // connection to rdbms
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'mysql:mysql-connector-java'
-    testImplementation('com.h2database:h2')
-}
+        // connection to rdbms
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        runtimeOnly 'mysql:mysql-connector-java'
+        testImplementation('com.h2database:h2')
+    }
 
-tasks.named('test') {
-    useJUnitPlatform()
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }
