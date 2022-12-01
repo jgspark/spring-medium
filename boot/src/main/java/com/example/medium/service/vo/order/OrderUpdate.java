@@ -1,4 +1,4 @@
-package com.example.medium.service.vo;
+package com.example.medium.service.vo.order;
 
 import com.example.medium.enums.OrderStatus;
 import com.example.medium.service.OrderService;
@@ -12,15 +12,15 @@ import org.springframework.util.Assert;
  * 주문에 대한 "상태 업테이트 관점" 이외에 다른 것을 담지 않습니다.
  *
  * @author newbalancer
- * @see OrderService#updateStatus(OrderUpdateVO)
+ * @see OrderService#updateStatus(OrderUpdate)
  */
 @Getter
-public class OrderUpdateVO {
+public class OrderUpdate {
 
     /**
      * blocking no-arg constructor
      */
-    private OrderUpdateVO() {
+    private OrderUpdate() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class OrderUpdateVO {
      * @param status    주문에 대한 상태 변화 입니다.
      */
     @Builder
-    private OrderUpdateVO(Long productId, Long orderId, @NotNull OrderStatus status) {
+    private OrderUpdate(Long productId, Long orderId, @NotNull OrderStatus status) {
         this.productId = productId;
         this.status = status;
         this.orderId = orderId;

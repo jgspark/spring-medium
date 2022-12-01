@@ -1,9 +1,9 @@
-package com.example.medium.service.order;
+package com.example.medium.service.vo.order.status;
 
 import com.example.medium.domain.Product;
 import com.example.medium.repository.OrderRepository;
 import com.example.medium.repository.ProductRepository;
-import com.example.medium.service.vo.OrderUpdateVO;
+import com.example.medium.service.vo.order.OrderUpdate;
 
 public final class BulkOrderStatusUpdate extends AbstractOrderStatusUpdate {
 
@@ -12,7 +12,7 @@ public final class BulkOrderStatusUpdate extends AbstractOrderStatusUpdate {
     }
 
     @Override
-    public int update(OrderUpdateVO vo) {
+    public int update(OrderUpdate vo) {
         Product product = productRepository.findById(vo.getProductId()).orElseThrow();
 
         product.getOrders().forEach(order -> order.changedStatus(vo.getStatus()));

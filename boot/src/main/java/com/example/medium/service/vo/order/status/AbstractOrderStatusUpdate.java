@@ -1,8 +1,8 @@
-package com.example.medium.service.order;
+package com.example.medium.service.vo.order.status;
 
 import com.example.medium.repository.OrderRepository;
 import com.example.medium.repository.ProductRepository;
-import com.example.medium.service.vo.OrderUpdateVO;
+import com.example.medium.service.vo.order.OrderUpdate;
 
 public abstract class AbstractOrderStatusUpdate {
 
@@ -15,7 +15,7 @@ public abstract class AbstractOrderStatusUpdate {
         this.orderRepository = orderRepository;
     }
 
-    public abstract int update(OrderUpdateVO vo);
+    public abstract int update(OrderUpdate vo);
 
     static public AbstractOrderStatusUpdate of(boolean isBulk, ProductRepository productRepository, OrderRepository orderRepository) {
         if (isBulk) {
