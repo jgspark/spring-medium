@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -44,33 +45,43 @@ public class DefaultCache {
         return (T) data.get();
     }
 
-    public <T> T getAndPut(RedisConfiguration.CacheTimePair pair, String key, Callable<T> callable) {
+    public <T> Optional<T> getAndPut(RedisConfiguration.CacheTimePair pair, String key, Callable<T> callable) {
 
         Optional<Object> data = get(pair, key);
 
         if (data.isEmpty()) {
 
-            T payload;
+            Optional<T> payload;
 
             try {
-                payload = callable.call();
+                payload = Optional.ofNullable(callable.call());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
-            put(pair, key, payload);
+            if (payload.isEmpty()) {
+                return Optional.empty();
+            }
 
-            return (T) payload;
+            T cacheValue = payload.get();
+
+            put(pair, key, cacheValue);
+
+            return Optional.of((T) cacheValue);
         }
-        return (T) data.get();
+
+        return Optional.of((T) data.get());
     }
 
     /**
      * 캐시 삭제
-     * @param pair
-     * @param key
+     *
+     * @param pair TTL 명칭
+     * @param key  Redis Key 값
      */
-    public void remove(RedisConfiguration.CacheTimePair pair, String key) {
+    @Nullable
+    public <T> Optional<T> remove(RedisConfiguration.CacheTimePair pair, String key) {
         cacheManager.getCache(pair.name()).evict(key);
+        return Optional.empty();
     }
 }

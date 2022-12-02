@@ -52,9 +52,6 @@ public class RedisConfiguration {
 
         setRedisCacheConfigurationMap(redisCacheConfigurationMap, keySerializer, valueSerializer);
 
-        RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(
-            redisConnectionFactory);
-
         RedisCacheConfiguration defaultConfiguration = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(
             RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer())).prefixKeysWith(
             "default").entryTtl(Duration.ofHours(5L));
