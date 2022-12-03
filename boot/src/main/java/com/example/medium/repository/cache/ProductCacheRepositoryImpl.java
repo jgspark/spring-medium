@@ -1,8 +1,7 @@
-package com.example.medium.repository.advice;
+package com.example.medium.repository.cache;
 
 import com.example.medium.domain.Product;
 import com.example.medium.repository.ProductRepository;
-import com.example.medium.service.cache.DefaultCache;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,7 @@ import static com.example.medium.config.redis.RedisConfiguration.CacheTimePair.M
  */
 @Repository
 @RequiredArgsConstructor
-public class ProductAdviceRepositoryImpl implements ProductAdviceRepository {
+public class ProductCacheRepositoryImpl implements ProductCacheRepository {
 
     private final String key = "product";
 

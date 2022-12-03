@@ -1,4 +1,4 @@
-package com.example.medium.service.cache;
+package com.example.medium.repository.cache;
 
 import com.example.medium.config.redis.RedisConfiguration;
 import java.util.Objects;

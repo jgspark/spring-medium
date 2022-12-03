@@ -2,7 +2,7 @@ package com.example.medium.service;
 
 import com.example.medium.domain.Product;
 import com.example.medium.repository.ProductRepository;
-import com.example.medium.service.cache.DefaultCache;
+import com.example.medium.repository.cache.DefaultCache;
 import com.example.medium.service.dto.ProductSaveRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
