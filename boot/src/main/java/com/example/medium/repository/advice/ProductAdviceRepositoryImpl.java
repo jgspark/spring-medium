@@ -11,6 +11,9 @@ import java.util.Optional;
 
 import static com.example.medium.config.redis.RedisConfiguration.CacheTimePair.MIN_1;
 
+/**
+ * 캐시를 태우는 로직
+ */
 @Repository
 @RequiredArgsConstructor
 public class ProductAdviceRepositoryImpl implements ProductAdviceRepository {
@@ -26,5 +29,11 @@ public class ProductAdviceRepositoryImpl implements ProductAdviceRepository {
     public Optional<Product> findById(Long id) {
         final String relKey = key + "_" + id;
         return defaultCache.getAndPut(MIN_1, relKey, () -> productRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public Optional<String> getValue(String value) {
+        String relKey = key + "_" + value;
+        return defaultCache.getAndPut(MIN_1, relKey, () -> value);
     }
 }
