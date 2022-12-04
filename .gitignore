@@ -42,3 +42,6 @@ boot/.gradle
 
 core/build
 core/.gradle
+
+data/build
+data/.gradle
