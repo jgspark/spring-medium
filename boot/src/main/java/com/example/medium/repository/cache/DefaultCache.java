@@ -1,15 +1,16 @@
 package com.example.medium.repository.cache;
 
 import com.example.medium.config.redis.RedisConfiguration;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.Callable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.Callable;
 
 /**
  * 공통화된 캐시 작업을 위한 DefaultCache Class
@@ -36,6 +37,13 @@ public class DefaultCache {
         return optional.map(Cache.ValueWrapper::get);
     }
 
+    /**
+     * @param pair    패어 키값
+     * @param key     레디스 키값
+     * @param payload 캐시 값
+     * @param <T>     캐시의 return 값
+     * @return T
+     */
     public <T> T getAndPut(RedisConfiguration.CacheTimePair pair, String key, Object payload) {
         Optional<Object> data = get(pair, key);
         if (data.isEmpty()) {
@@ -45,6 +53,15 @@ public class DefaultCache {
         return (T) data.get();
     }
 
+    /**
+     * 캐시 값을 callback 으로 한다.
+     *
+     * @param pair     패어 키값
+     * @param key      레디스 키값
+     * @param callable callback method
+     * @param <T>      return 값
+     * @return Optional<T>
+     */
     public <T> Optional<T> getAndPut(RedisConfiguration.CacheTimePair pair, String key, Callable<T> callable) {
 
         Optional<Object> data = get(pair, key);
