@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.example.medium.config.redis.RedisConfiguration.CacheTimePair.MIN_1;
+import static com.example.medium.enums.CacheTimePair.MIN_1;
+
 
 /**
  * 캐시를 태우는 로직

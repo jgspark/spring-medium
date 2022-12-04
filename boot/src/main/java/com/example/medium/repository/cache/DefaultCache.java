@@ -1,6 +1,6 @@
 package com.example.medium.repository.cache;
 
-import com.example.medium.config.redis.RedisConfiguration;
+import com.example.medium.enums.CacheTimePair;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
@@ -21,18 +21,18 @@ public class DefaultCache {
 
     private final CacheManager cacheManager;
 
-    private Optional<Cache.ValueWrapper> getOptional(RedisConfiguration.CacheTimePair pair, String key) {
+    private Optional<Cache.ValueWrapper> getOptional(CacheTimePair pair, String key) {
         Assert.notNull(pair);
         Assert.notNull(key);
         return Optional.ofNullable(cacheManager.getCache(pair.name()).get(key));
     }
 
-    private Object put(RedisConfiguration.CacheTimePair pair, String key, Object payload) {
+    private Object put(CacheTimePair pair, String key, Object payload) {
         Objects.requireNonNull(cacheManager.getCache(pair.name())).put(key, payload);
         return payload;
     }
 
-    public Optional<Object> get(RedisConfiguration.CacheTimePair pair, String key) {
+    public Optional<Object> get(CacheTimePair pair, String key) {
         Optional<Cache.ValueWrapper> optional = getOptional(pair, key);
         return optional.map(Cache.ValueWrapper::get);
     }
@@ -44,7 +44,7 @@ public class DefaultCache {
      * @param <T>     캐시의 return 값
      * @return T
      */
-    public <T> T getAndPut(RedisConfiguration.CacheTimePair pair, String key, Object payload) {
+    public <T> T getAndPut(CacheTimePair pair, String key, Object payload) {
         Optional<Object> data = get(pair, key);
         if (data.isEmpty()) {
             put(pair, key, payload);
@@ -62,7 +62,7 @@ public class DefaultCache {
      * @param <T>      return 값
      * @return Optional<T>
      */
-    public <T> Optional<T> getAndPut(RedisConfiguration.CacheTimePair pair, String key, Callable<T> callable) {
+    public <T> Optional<T> getAndPut(CacheTimePair pair, String key, Callable<T> callable) {
 
         Optional<Object> data = get(pair, key);
 
@@ -97,7 +97,7 @@ public class DefaultCache {
      * @param key  Redis Key 값
      */
     @Nullable
-    public <T> Optional<T> remove(RedisConfiguration.CacheTimePair pair, String key) {
+    public <T> Optional<T> remove(CacheTimePair pair, String key) {
         cacheManager.getCache(pair.name()).evict(key);
         return Optional.empty();
     }
