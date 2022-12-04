@@ -2,7 +2,7 @@ package com.example.medium.service;
 
 import com.example.medium.domain.Product;
 import com.example.medium.repository.ProductRepository;
-import com.example.medium.repository.cache.DefaultCache;
+import com.example.medium.repository.cache.ProductCacheRepository;
 import com.example.medium.service.dto.ProductSaveRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -23,11 +24,11 @@ class ProductBeforeServiceTest {
     private ProductRepository productRepository;
 
     @Mock
-    private DefaultCache defaultCache;
+    private ProductCacheRepository productCacheRepository;
 
     @BeforeEach
     public void init() {
-        productBeforeService = new ProductBeforeService(productRepository, defaultCache);
+        productBeforeService = new ProductBeforeService(productRepository, productCacheRepository);
     }
 
     @Test

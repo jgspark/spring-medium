@@ -1,13 +1,13 @@
 package com.example.medium;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class BootApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
-}
+//@SpringBootTest
+//class BootApplicationTests {
+//
+//    @Test
+//    void contextLoads() {
+//    }
+//
+//}
