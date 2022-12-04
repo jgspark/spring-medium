@@ -39,3 +39,6 @@ out/
 
 boot/build
 boot/.gradle
+
+core/build
+core/.gradle
