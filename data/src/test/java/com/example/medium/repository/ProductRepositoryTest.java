@@ -1,16 +1,19 @@
 package com.example.medium.repository;
 
+import com.example.medium.config.RepositoryTestConfiguration;
 import com.example.medium.domain.Product;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {RepositoryTestConfiguration.class})
 class ProductRepositoryTest {
 
     @Autowired
