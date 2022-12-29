@@ -6,17 +6,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class StateService {
+public class StateSingletonService implements StateService {
 
     private Boolean state = false;
 
+    @Override
     public StateRequest getState(Boolean isChangeAble) {
         if (isCheckedAble(isChangeAble)) this.state = true;
         return new StateRequest(state, this.hashCode());
-    }
-
-    public boolean isCheckedAble(Boolean isCheckedAble) {
-        if (isCheckedAble == null) return false;
-        return isCheckedAble;
     }
 }
