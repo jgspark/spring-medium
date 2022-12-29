@@ -22,3 +22,10 @@ services:
       - ./db1/maria:/var/lib/mysqlysql
       # init.sql
       - ./db1/sql:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          # 50%?
+          cpus: 0.5
+          # 1G
+          memory: 1000M
