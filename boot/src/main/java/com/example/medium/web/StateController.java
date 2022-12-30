@@ -17,7 +17,7 @@ public class StateController {
     private final StateService statePrototypeService;
 
     /*
-     curl --location --request GET 'localhost:8080/state/t2'
+     curl --location --request GET 'localhost:8080/state/t1'
      */
     @GetMapping("t1")
     public StateRequest getState(Boolean isChangeAble) {
