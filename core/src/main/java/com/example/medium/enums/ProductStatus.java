@@ -1,2 +1,5 @@
-package com.example.medium.enums;public class ProductStatus {
+package com.example.medium.enums;
+
+public enum ProductStatus {
+    SOLD_OUT, SALE
 }

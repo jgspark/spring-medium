@@ -1,5 +1,6 @@
 package com.example.medium.domain;
 
+import com.example.medium.enums.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -21,9 +22,15 @@ public class Product implements Serializable {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private Set<Order> orders = new HashSet<>();
+
+    @OneToOne
+    private Stock stock;
 
     @Builder(builderMethodName = "initBuilder")
     private Product(String name) {
