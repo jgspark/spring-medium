@@ -20,9 +20,6 @@ public class Stock {
     private Long id;
 
 
-    @OneToOne
-    private Product product;
-
     // 현재 팔린 수량
     private Long count;
 
@@ -34,6 +31,9 @@ public class Stock {
 
     @Version
     private Long version;
+
+    @OneToOne
+    private Product product;
 
     @Transient
     public void changeCount(Long count) {

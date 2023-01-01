@@ -29,7 +29,8 @@ public class Product implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private Set<Order> orders = new HashSet<>();
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(mappedBy = "product")
     private Stock stock;
 
     @Builder(builderMethodName = "initBuilder")
