@@ -6,6 +6,13 @@ services:
     restart: always
     ports:
       - '6379:6379'
+    deploy:
+      resources:
+        limits:
+          # 50%?
+          cpus: 0.5
+          # 1G
+          memory: 1000M
   db2:
     image: arm64v8/mariadb
     restart: always

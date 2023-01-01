@@ -2,13 +2,19 @@ package com.example.medium.service;
 
 import com.example.medium.domain.Product;
 import com.example.medium.domain.Stock;
+import com.example.medium.exception.NotfoundException;
 import com.example.medium.exception.SoldOutException;
+import com.example.medium.exception.StockLimitCountException;
 import com.example.medium.repository.StockRepository;
+import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StockPlusService {
@@ -20,30 +26,36 @@ public class StockPlusService {
      * 만약 없다면 항위 트랜잭션을 새로 생성
      */
     @Transactional
-    public void plus(Product product, Long orderCount) {
+    public Stock plus(@NotNull Product product, @NotNull Long orderCount) {
 
         Long productId = product.getId();
 
-        int cnt = 0;
+        Stock stock = stockRepository.findByProductId(productId).orElseThrow(() -> new NotfoundException(Stock.class));
 
-        while (cnt < 5) {
+        checkLimitCount(orderCount, stock.getLimitCount());
 
-            try {
+        plusCount(orderCount, stock);
 
-                Stock stock = stockRepository.findByProductId(productId).orElseThrow();
+        stockRepository.flush();
 
-                plusCount(orderCount, stock);
+        return stock;
+    }
 
-            } catch (SoldOutException e) {
-                e.printStackTrace();
-                cnt++;
-            }
+    private void checkLimitCount(@NotNull Long orderCount, Long limitCount) {
+
+        // 항상 제한된 값은 아님 만약 null 이면 예외 처리
+        if (Objects.isNull(limitCount)) {
+            return;
+        }
+
+        if (limitCount < orderCount) {
+            throw new StockLimitCountException();
         }
     }
 
     private void plusCount(Long orderCount, Stock stock) {
         // 현재 수량
-        long newStockCount = orderCount + stock.getCount();
+        Long newStockCount = orderCount + stock.getCount();
 
         // 오리지널 수량에 비해서 높으면 안됨
         Long originCount = stock.getOriginCount();

@@ -6,13 +6,16 @@ create table orders
     product_id bigint not null,
     primary key (id)
 ) engine=InnoDB;
+
 create table products
 (
-    id     bigint not null auto_increment,
-    name   varchar(255),
-    status varchar(255),
+    id       bigint not null auto_increment,
+    name     varchar(255),
+    status   varchar(255),
+    stock_id bigint,
     primary key (id)
 ) engine=InnoDB;
+
 create table stock
 (
     id           bigint not null auto_increment,
@@ -20,21 +23,23 @@ create table stock
     limit_count  bigint,
     origin_count bigint,
     version      bigint,
-    product_id   bigint,
     primary key (id)
 ) engine=InnoDB;
 
 alter table orders
-    add constraint FKkp5k52qtiygd8jkag4hayd0qg foreign key (product_id) references products (id);
+    add constraint FKkp5k52qtiygd8jkag4hayd0qg
+        foreign key (product_id)
+            references products (id);
 
-alter table stock
-    add constraint FKeuiihog7wq4cu7nvqu7jx57d2 foreign key (product_id) references products (id);
+alter table products
+    add constraint FKspi67gawp2uo9fhpefswcicqb
+        foreign key (stock_id)
+            references stock (id);
 
 
--- insert data
+INSERT INTO stock (id, count, limit_count, origin_count, version)
+    value (1, 0, 10, 500, 0);
 
-INSERT INTO products (id, name, status)
-VALUES (1, 'test', 'SALE');
+INSERT INTO products (id, name, status, stock_id)
+VALUES (1, 'test', 'SALE', 1);
 
-INSERT INTO stock (count, limit_count, origin_count, version, product_id)
-    value (0 , 10 , 500 , 0 , 1);

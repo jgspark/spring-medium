@@ -1,7 +1,9 @@
 package com.example.medium.service;
 
 import com.example.medium.domain.Product;
+import com.example.medium.dto.ProductStock;
 import com.example.medium.enums.ProductStatus;
+import com.example.medium.exception.NotfoundException;
 import com.example.medium.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,6 @@ public class ProductService {
      */
     @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
     public Product getSaleProduct(Long productId) {
-        return productRepository.findByIdAndStatus(productId, ProductStatus.SALE).orElseThrow(() -> new RuntimeException(String.format("not found product %d", productId)));
+        return productRepository.findByIdAndStatus(productId, ProductStatus.SALE).orElseThrow(() -> new NotfoundException(Product.class, "not found id is " + productId));
     }
 }

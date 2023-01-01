@@ -30,11 +30,16 @@ public class Product implements Serializable {
     private Set<Order> orders = new HashSet<>();
 
     @JsonIgnore
-    @OneToOne(mappedBy = "product")
+    @OneToOne(fetch = FetchType.LAZY)
     private Stock stock;
 
     @Builder(builderMethodName = "initBuilder")
     private Product(String name) {
         this.name = name;
+    }
+
+    @Transient
+    public void changeState(ProductStatus status) {
+        this.status = status;
     }
 }

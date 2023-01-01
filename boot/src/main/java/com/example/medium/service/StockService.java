@@ -1,6 +1,9 @@
 package com.example.medium.service;
 
 import com.example.medium.domain.Product;
+import com.example.medium.domain.Stock;
+import com.example.medium.dto.ProductStock;
+import com.example.medium.enums.ProductStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +22,11 @@ public class StockService {
 
         Product product = productService.getSaleProduct(productId);
 
-        stockPlusService.plus(product, orderCount);
+        Stock stock = stockPlusService.plus(product, orderCount);
+
+        if (stock.isSoldOutAble()) {
+            product.changeState(ProductStatus.SOLD_OUT);
+        }
 
         return product;
     }

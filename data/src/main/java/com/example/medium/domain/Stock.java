@@ -1,5 +1,6 @@
 package com.example.medium.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -32,11 +34,17 @@ public class Stock implements Serializable {
     @Version
     private Long version;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(mappedBy = "stock", fetch = FetchType.LAZY)
     private Product product;
 
     @Transient
     public void changeCount(Long count) {
         this.count = count;
+    }
+
+    @Transient
+    public boolean isSoldOutAble() {
+        return Objects.equals(count, originCount);
     }
 }

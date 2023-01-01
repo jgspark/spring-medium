@@ -1,6 +1,6 @@
 package com.example.medium.exception;
 
-final public class SoldOutException extends RuntimeException {
+final public class SoldOutException extends StockException {
 
     public SoldOutException() {
     }
@@ -15,5 +15,9 @@ final public class SoldOutException extends RuntimeException {
 
     public SoldOutException(Throwable cause) {
         super(cause);
+    }
+
+    public SoldOutException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 }
