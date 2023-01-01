@@ -29,3 +29,12 @@ alter table orders
 
 alter table stock
     add constraint FKeuiihog7wq4cu7nvqu7jx57d2 foreign key (product_id) references products (id);
+
+
+-- insert data
+
+INSERT INTO products (id, name, status)
+VALUES (1, 'test', 'SALE');
+
+INSERT INTO stock (count, limit_count, origin_count, version, product_id)
+    value (0 , 10 , 500 , 0 , 1);
