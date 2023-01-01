@@ -15,7 +15,7 @@ public class StockController {
 
     private final StockService stockService;
 
-    @PatchMapping("product/{productId}/stock")
+    @PatchMapping("products/{productId}/stock")
     public Product orderProduct(@PathVariable Long productId, @RequestBody ProductStockRequest dto) {
         dto.setProductId(productId);
         return stockService.orderByProduct(dto.getProductId(), dto.getOrderCount());
